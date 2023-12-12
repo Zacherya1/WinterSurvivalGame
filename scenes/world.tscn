@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dttxk50l3h2d8"]
+
+[ext_resource type="Texture2D" uid="uid://cwdxsad24uybe" path="res://assets/snowtexture.png" id="1_7tsvx"]
+[ext_resource type="PackedScene" uid="uid://bcb4yejph6lfj" path="res://player.tscn" id="2_yjn56"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_silhq"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_lgo78"]
+sky_material = SubResource("ProceduralSkyMaterial_silhq")
+
+[sub_resource type="Environment" id="Environment_3v2d5"]
+background_mode = 2
+sky = SubResource("Sky_lgo78")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oefqb"]
+albedo_color = Color(0.666667, 0.666667, 0.666667, 1)
+albedo_texture = ExtResource("1_7tsvx")
+uv1_triplanar = true
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3v2d5")
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+use_collision = true
+size = Vector3(100, 0.002, 100)
+material = SubResource("StandardMaterial3D_oefqb")
+
+[node name="Player" parent="." instance=ExtResource("2_yjn56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0679278, 0)
