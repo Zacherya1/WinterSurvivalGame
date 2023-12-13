@@ -1,30 +1,159 @@
-[gd_scene load_steps=7 format=3 uid="uid://dttxk50l3h2d8"]
+[gd_scene load_steps=12 format=3 uid="uid://dttxk50l3h2d8"]
 
 [ext_resource type="Texture2D" uid="uid://cwdxsad24uybe" path="res://assets/snowtexture.png" id="1_7tsvx"]
-[ext_resource type="PackedScene" uid="uid://bcb4yejph6lfj" path="res://player.tscn" id="2_yjn56"]
+[ext_resource type="PackedScene" uid="uid://bcb4yejph6lfj" path="res://scenes/player.tscn" id="2_yjn56"]
+[ext_resource type="Texture2D" uid="uid://bjvcigvq204bw" path="res://addons/kenney_particle_pack/circle_05.png" id="3_cw5re"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_silhq"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="Shader" id="Shader_8jql4"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.2.stable's ProceduralSkyMaterial.
+
+shader_type sky;
+render_mode use_debanding;
+
+uniform vec4 sky_top_color : source_color = vec4(0.385, 0.454, 0.55, 1.0);
+uniform vec4 sky_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float sky_curve : hint_range(0, 1) = 0.15;
+uniform float sky_energy = 1.0; // In Lux.
+uniform sampler2D sky_cover : filter_linear, source_color, hint_default_black;
+uniform vec4 sky_cover_modulate : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 ground_bottom_color : source_color = vec4(0.2, 0.169, 0.133, 1.0);
+uniform vec4 ground_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float ground_curve : hint_range(0, 1) = 0.02;
+uniform float ground_energy = 1.0;
+uniform float sun_angle_max = 30.0;
+uniform float sun_curve : hint_range(0, 1) = 0.15;
+
+
+
+void sky() {
+	float v_angle = acos(clamp(EYEDIR.y, -1.0, 1.0));
+	float c = (1.0 - v_angle / (PI * 0.5));
+	vec3 sky = mix(sky_horizon_color.rgb, sky_top_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / sky_curve), 0.0, 1.0));
+	sky *= sky_energy;
+
+	if (LIGHT0_ENABLED) {
+		float sun_angle = acos(dot(LIGHT0_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT0_SIZE) {
+			sky = LIGHT0_COLOR * LIGHT0_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT0_SIZE) / (sun_angle_max - LIGHT0_SIZE);
+			sky = mix(LIGHT0_COLOR * LIGHT0_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT1_ENABLED) {
+		float sun_angle = acos(dot(LIGHT1_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT1_SIZE) {
+			sky = LIGHT1_COLOR * LIGHT1_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT1_SIZE) / (sun_angle_max - LIGHT1_SIZE);
+			sky = mix(LIGHT1_COLOR * LIGHT1_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT2_ENABLED) {
+		float sun_angle = acos(dot(LIGHT2_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT2_SIZE) {
+			sky = LIGHT2_COLOR * LIGHT2_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT2_SIZE) / (sun_angle_max - LIGHT2_SIZE);
+			sky = mix(LIGHT2_COLOR * LIGHT2_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT3_ENABLED) {
+		float sun_angle = acos(dot(LIGHT3_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT3_SIZE) {
+			sky = LIGHT3_COLOR * LIGHT3_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT3_SIZE) / (sun_angle_max - LIGHT3_SIZE);
+			sky = mix(LIGHT3_COLOR * LIGHT3_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	vec4 sky_cover_texture = texture(sky_cover, SKY_COORDS);
+	sky += (sky_cover_texture.rgb * sky_cover_modulate.rgb) * sky_cover_texture.a * sky_cover_modulate.a * sky_energy;
+
+	c = (v_angle - (PI * 0.5)) / (PI * 0.5);
+	vec3 ground = mix(ground_horizon_color.rgb, ground_bottom_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / ground_curve), 0.0, 1.0));
+	ground *= ground_energy;
+
+	COLOR = mix(ground, sky, step(0.0, EYEDIR.y));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4isa1"]
+shader = SubResource("Shader_8jql4")
+shader_parameter/sky_top_color = Color(0.0823529, 0.192157, 0.298039, 1)
+shader_parameter/sky_horizon_color = Color(0.27451, 0.498039, 0.643137, 1)
+shader_parameter/sky_curve = 0.15
+shader_parameter/sky_energy = 1.0
+shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
+shader_parameter/ground_bottom_color = Color(0.0823529, 0.192157, 0.298039, 1)
+shader_parameter/ground_horizon_color = Color(0.27451, 0.498039, 0.643137, 1)
+shader_parameter/ground_curve = 0.02
+shader_parameter/ground_energy = 1.0
+shader_parameter/sun_angle_max = 0.523599
+shader_parameter/sun_curve = 0.15
 
 [sub_resource type="Sky" id="Sky_lgo78"]
-sky_material = SubResource("ProceduralSkyMaterial_silhq")
+sky_material = SubResource("ShaderMaterial_4isa1")
 
 [sub_resource type="Environment" id="Environment_3v2d5"]
 background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_lgo78")
-tonemap_mode = 2
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.0
+reflected_light_source = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.184314, 0.235294, 0.266667, 1)
+fog_light_energy = 0.2
+fog_density = 0.1
+volumetric_fog_albedo = Color(0.0823529, 0.192157, 0.298039, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oefqb"]
 albedo_color = Color(0.666667, 0.666667, 0.666667, 1)
 albedo_texture = ExtResource("1_7tsvx")
 uv1_triplanar = true
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_un7tr"]
+emission_shape = 3
+emission_box_extents = Vector3(400, 1, 400)
+angle_max = 360.0
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+angular_velocity_min = 30.0
+angular_velocity_max = 50.0
+linear_accel_min = 1.0
+linear_accel_max = 10.0
+scale_min = 0.75
+turbulence_noise_scale = 1.784
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lsxu"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.364706, 0.364706, 0.364706, 0.901961)
+albedo_texture = ExtResource("3_cw5re")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_aausb"]
+material = SubResource("StandardMaterial3D_6lsxu")
+
 [node name="World" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.299512, 0.400366, 0, 0.800731, 0.599024, -0.5, 0.51877, -0.693453, 0, 14.3946, 0)
+visible = false
+light_energy = 0.0
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -34,8 +163,24 @@ environment = SubResource("Environment_3v2d5")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map"]
 use_collision = true
-size = Vector3(100, 0.002, 100)
+size = Vector3(400, 0.002, 400)
 material = SubResource("StandardMaterial3D_oefqb")
 
 [node name="Player" parent="." instance=ExtResource("2_yjn56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0679278, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.0398, 2.3153, 0)
+size = Vector3(1, 5, 1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+amount = 100000
+lifetime = 5.0
+visibility_aabb = AABB(-400.803, -351.372, -506.755, 987.47, 353.38, 1024.57)
+process_material = SubResource("ParticleProcessMaterial_un7tr")
+draw_pass_1 = SubResource("QuadMesh_aausb")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.8597, 0)
+size = Vector3(400, 1, 400)

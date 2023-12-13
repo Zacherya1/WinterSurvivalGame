@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dclbwh0ty41n1"]
+
+[ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_xxdv6"]
+[ext_resource type="AudioStream" uid="uid://vb3r5bbitui2" path="res://assets/WindAmbience.mp3" id="2_tfpl1"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_xxdv6")
+
+[node name="WindAmbience" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_tfpl1")
+attenuation_model = 3
+autoplay = true
+panning_strength = 0.0
