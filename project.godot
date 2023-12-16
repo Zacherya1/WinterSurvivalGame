@@ -30,7 +30,7 @@ window/stretch/mode="viewport"
 
 [gui]
 
-timers/tooltip_delay_sec=0.25
+timers/tooltip_delay_sec=0.0
 
 [input]
 

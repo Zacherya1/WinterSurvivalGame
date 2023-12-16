@@ -7,7 +7,8 @@ load_path = "res://.godot/imported/HideScrap32.png-6088f00a63efecec213426584903d
 
 [resource]
 script = ExtResource("1_eb785")
-name = "Hide Scrap"
-description = "Torn, but useable"
+name = "[Hide Scrap]"
+description = "
+Rough, but useable."
 stackable = true
 texture = SubResource("CompressedTexture2D_2oq74")

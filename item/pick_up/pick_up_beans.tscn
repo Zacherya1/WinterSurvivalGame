@@ -27,6 +27,8 @@ points = PackedVector3Array(7.45058e-09, 0.15, 0.1, 0.0587614, 0.15, 0.0808927, 
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_a05g5")
+sound_effect = 1
+display_text = "Can of Beans"
 slot_data = SubResource("Resource_8dt04")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

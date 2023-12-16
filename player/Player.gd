@@ -34,6 +34,9 @@ var gravity = 9.8
 @onready var camera = $Head/Camera3D
 @onready var flashlight = $Head/Camera3D/SpotLight3D
 @onready var interact_ray = $Head/Camera3D/InteractRay
+@onready var looking_at_item = $"../UI/Panel"
+@onready var looking_at_item_text = $"../UI/Panel/Label"
+@onready var inventory_interface = $"../UI/InventoryInterface"
 
 
 func _ready():
@@ -51,11 +54,11 @@ func _unhandled_input(event):
 		interact()
 
 func _physics_process(delta):
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	
+		
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -65,7 +68,7 @@ func _physics_process(delta):
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
@@ -80,7 +83,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
-		
+	
 	#Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = _headbob(t_bob)
@@ -90,6 +93,18 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
+	#TODO Consider making this block a seperate function
+	#Looking at interactable - interact text?
+	if interact_ray.is_colliding():
+		if inventory_interface.visible == false:
+			looking_at_item.visible = true
+		else:
+			looking_at_item.visible = false
+		if interact_ray.get_collider():
+			looking_at_item_text.text = interact_ray.get_collider().display_type + "\n\n" + interact_ray.get_collider().display_text
+	else:
+		looking_at_item.visible = false
 	
 	move_and_slide()
 
@@ -126,6 +141,8 @@ func get_drop_position() -> Vector3:
 	return camera.global_position + direction
 
 func eat(hunger_value: int) -> void:
+	AudioManager.MenuClickLow()
+	AudioManager.Eat()
 	if hunger < 100:
 		if (hunger_value + hunger) > 100:
 			while (hunger_value + hunger) > 100:

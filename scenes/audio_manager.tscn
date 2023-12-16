@@ -1,13 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://dclbwh0ty41n1"]
+[gd_scene load_steps=7 format=3 uid="uid://dclbwh0ty41n1"]
 
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_xxdv6"]
-[ext_resource type="AudioStream" uid="uid://vb3r5bbitui2" path="res://assets/WindAmbience.mp3" id="2_tfpl1"]
+[ext_resource type="AudioStream" uid="uid://b238b30cn57yj" path="res://assets/WindAmbienceShortFixed.mp3" id="2_d1r31"]
+[ext_resource type="AudioStream" uid="uid://dvobs8n453sl" path="res://assets/SoftPickUp.wav" id="3_wn07a"]
+[ext_resource type="AudioStream" uid="uid://cxffx4farohv7" path="res://assets/MetalPickUp.mp3" id="4_vjf2u"]
+[ext_resource type="AudioStream" uid="uid://bok13fi3uefw5" path="res://assets/MenuClick.wav" id="5_83kjx"]
+[ext_resource type="AudioStream" uid="uid://c1fvpq5xllbai" path="res://assets/Eat.wav" id="6_48cdp"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_xxdv6")
 
 [node name="WindAmbience" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_tfpl1")
+stream = ExtResource("2_d1r31")
 attenuation_model = 3
 autoplay = true
+panning_strength = 0.0
+
+[node name="SoftPickUp" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_wn07a")
+attenuation_model = 3
+pitch_scale = 1.2
+max_polyphony = 10
+panning_strength = 0.0
+
+[node name="SoftDrop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_wn07a")
+attenuation_model = 3
+max_polyphony = 10
+panning_strength = 0.0
+
+[node name="MetalPickUp" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_vjf2u")
+attenuation_model = 3
+pitch_scale = 0.8
+max_polyphony = 10
+panning_strength = 0.0
+
+[node name="MetalDrop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_vjf2u")
+attenuation_model = 3
+pitch_scale = 0.7
+max_polyphony = 10
+panning_strength = 0.0
+
+[node name="MenuClickHigh" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_83kjx")
+attenuation_model = 3
+pitch_scale = 0.8
+max_polyphony = 10
+panning_strength = 0.0
+
+[node name="MenuClickLow" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_83kjx")
+attenuation_model = 3
+pitch_scale = 0.6
+max_polyphony = 10
+panning_strength = 0.0
+
+[node name="Eat" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_48cdp")
+attenuation_model = 3
+pitch_scale = 1.2
+max_polyphony = 10
 panning_strength = 0.0

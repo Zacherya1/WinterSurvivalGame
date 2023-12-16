@@ -6,8 +6,9 @@
 [resource]
 script = ExtResource("1_r2o0m")
 hunger_value = 5
-name = "Can of Beans"
-description = "Somehow still edible
+name = "[Can of Beans]"
+description = "
+Somehow still edible.
 Slightly Nourishing"
 stackable = false
 texture = ExtResource("2_idrmd")

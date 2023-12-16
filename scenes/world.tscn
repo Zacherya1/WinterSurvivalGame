@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dttxk50l3h2d8"]
+[gd_scene load_steps=31 format=3 uid="uid://dttxk50l3h2d8"]
 
 [ext_resource type="Texture2D" uid="uid://cwdxsad24uybe" path="res://assets/snowtexture.png" id="1_7tsvx"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_40num"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://inventory/inventory_interface.gd" id="6_tqy0d"]
 [ext_resource type="PackedScene" uid="uid://dvunxs4oytqx5" path="res://inventory/slot.tscn" id="8_4g01v"]
 [ext_resource type="PackedScene" uid="uid://bcbcqdl2so53b" path="res://interactable/chest.tscn" id="9_sivul"]
+[ext_resource type="FontFile" uid="uid://lypq04cnl56u" path="res://assets/RomanAntique.ttf" id="9_uk1qn"]
+[ext_resource type="Texture2D" uid="uid://dvymjgbga160s" path="res://assets/blur.png" id="9_w7hk4"]
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="10_gnfx3"]
 [ext_resource type="Resource" uid="uid://ccolf4m1fx4bg" path="res://item/items/Beans.tres" id="11_4eb8d"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="12_ng3kk"]
@@ -160,6 +162,11 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_aausb"]
 material = SubResource("StandardMaterial3D_6lsxu")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0bk2"]
+texture = ExtResource("9_w7hk4")
+region_rect = Rect2(94.3569, 93.026, 404.624, 401.962)
+modulate_color = Color(1, 1, 1, 0.541176)
+
 [sub_resource type="Resource" id="Resource_pf16x"]
 script = ExtResource("12_ng3kk")
 item_data = ExtResource("11_4eb8d")
@@ -264,6 +271,45 @@ layout_mode = 0
 offset_right = 96.0
 offset_bottom = 96.0
 scale = Vector2(0.75, 0.75)
+
+[node name="Panel" type="Panel" parent="UI"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.524
+anchor_top = 0.644
+anchor_right = 0.524
+anchor_bottom = 0.644
+offset_left = -161.08
+offset_top = -0.520081
+offset_right = 161.92
+offset_bottom = 148.48
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_j0bk2")
+
+[node name="Label" type="Label" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -138.5
+offset_top = -129.0
+offset_right = 135.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("9_uk1qn")
+theme_override_font_sizes/font_size = 40
+text = "[E] Take
+
+[Can of Beans]
+
+
+"
+horizontal_alignment = 1
 
 [node name="Chest" parent="." instance=ExtResource("9_sivul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.91468)

@@ -1,5 +1,7 @@
 extends Node3D
 
+#add this for every item that can be dropped in the game
+#yes, this will end up being massive
 const PickUpBeans = preload("res://item/pick_up/pick_up_beans.tscn")
 const Beans = preload("res://item/items/Beans.tres")
 const PickUpHide = preload("res://item/pick_up/pick_up_hide.tscn")
@@ -32,12 +34,17 @@ func toggle_inventory_interface(external_inventory_owner = null) -> void:
 
 func _on_inventory_interface_drop_slot_data(slot_data) -> void:
 	var pick_up
-	match slot_data.item_data:
-		Beans:
-			pick_up = PickUpBeans.instantiate()
-		HideScrap:
-			pick_up = PickUpHide.instantiate()
-	pick_up.position = player.get_drop_position()
-	add_child(pick_up)
+	#again, add this for every item to be dropped
+	for n in (slot_data.quantity):
+		match slot_data.item_data:
+			Beans:
+				AudioManager.MetalDrop()
+				pick_up = PickUpBeans.instantiate()
+			HideScrap:
+				AudioManager.SoftDrop()
+				pick_up = PickUpHide.instantiate()
+		pick_up.position = player.get_drop_position()
+		pick_up.slot_data.quantity = 1
+		add_child(pick_up)
 	
 	
