@@ -1,8 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://dttxk50l3h2d8"]
+[gd_scene load_steps=28 format=3 uid="uid://dttxk50l3h2d8"]
 
 [ext_resource type="Texture2D" uid="uid://cwdxsad24uybe" path="res://assets/snowtexture.png" id="1_7tsvx"]
-[ext_resource type="PackedScene" uid="uid://bcb4yejph6lfj" path="res://scenes/player.tscn" id="2_yjn56"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_40num"]
+[ext_resource type="PackedScene" uid="uid://bcb4yejph6lfj" path="res://player/player.tscn" id="2_yjn56"]
 [ext_resource type="Texture2D" uid="uid://bjvcigvq204bw" path="res://addons/kenney_particle_pack/circle_05.png" id="3_cw5re"]
+[ext_resource type="Resource" uid="uid://c5d6mx7btsjr1" path="res://test_inv.tres" id="3_owqpx"]
+[ext_resource type="PackedScene" uid="uid://b7ler82uhkvkw" path="res://inventory/inventory.tscn" id="4_4m46i"]
+[ext_resource type="Script" path="res://inventory/inventory_interface.gd" id="6_tqy0d"]
+[ext_resource type="PackedScene" uid="uid://dvunxs4oytqx5" path="res://inventory/slot.tscn" id="8_4g01v"]
+[ext_resource type="PackedScene" uid="uid://bcbcqdl2so53b" path="res://interactable/chest.tscn" id="9_sivul"]
+[ext_resource type="Script" path="res://inventory/inventory_data.gd" id="10_gnfx3"]
+[ext_resource type="Resource" uid="uid://ccolf4m1fx4bg" path="res://item/items/Beans.tres" id="11_4eb8d"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="12_ng3kk"]
+[ext_resource type="Resource" uid="uid://cpxt8h4i18qvu" path="res://item/items/HideScrap.tres" id="13_p5f08"]
+[ext_resource type="PackedScene" uid="uid://dk2y2vsy1ifm3" path="res://item/pick_up/pick_up_beans.tscn" id="14_ir0xc"]
+[ext_resource type="PackedScene" uid="uid://bbyuy26pt30iq" path="res://item/pick_up/pick_up_hide.tscn" id="15_w78xu"]
 
 [sub_resource type="Shader" id="Shader_8jql4"]
 code = "
@@ -148,7 +160,27 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_aausb"]
 material = SubResource("StandardMaterial3D_6lsxu")
 
+[sub_resource type="Resource" id="Resource_pf16x"]
+script = ExtResource("12_ng3kk")
+item_data = ExtResource("11_4eb8d")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_es3jy"]
+script = ExtResource("12_ng3kk")
+item_data = ExtResource("11_4eb8d")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_gtp6f"]
+script = ExtResource("12_ng3kk")
+item_data = ExtResource("13_p5f08")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_lm827"]
+script = ExtResource("10_gnfx3")
+slot_datas = Array[ExtResource("12_ng3kk")]([SubResource("Resource_pf16x"), null, SubResource("Resource_es3jy"), null, SubResource("Resource_gtp6f")])
+
 [node name="World" type="Node3D"]
+script = ExtResource("1_40num")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.299512, 0.400366, 0, 0.800731, 0.599024, -0.5, 0.51877, -0.693453, 0, 14.3946, 0)
@@ -161,13 +193,17 @@ environment = SubResource("Environment_3v2d5")
 
 [node name="Map" type="Node3D" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Map"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/StaticBody3D"]
 use_collision = true
-size = Vector3(400, 0.002, 400)
+collision_mask = 5
+size = Vector3(400, 0.01, 400)
 material = SubResource("StandardMaterial3D_oefqb")
 
 [node name="Player" parent="." instance=ExtResource("2_yjn56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0679278, 0)
+inventory_data = ExtResource("3_owqpx")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.0398, 2.3153, 0)
@@ -184,3 +220,61 @@ draw_pass_1 = SubResource("QuadMesh_aausb")
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.8597, 0)
 size = Vector3(400, 1, 400)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryInterface" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_tqy0d")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="UI/InventoryInterface"]
+layout_mode = 0
+offset_right = 1934.0
+offset_bottom = 1097.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.541176)
+
+[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("4_4m46i")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("4_4m46i")]
+visible = false
+layout_mode = 0
+offset_left = 1232.0
+offset_top = 308.0
+offset_right = 1272.0
+offset_bottom = 348.0
+
+[node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("8_4g01v")]
+visible = false
+modulate = Color(1, 1, 1, 0.541176)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Chest" parent="." instance=ExtResource("9_sivul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.91468)
+inventory_data = SubResource("Resource_lm827")
+
+[node name="PickUp_Hide" parent="." instance=ExtResource("15_w78xu")]
+transform = Transform3D(0.597065, -0.802193, 0, 0.802193, 0.597065, 0, 0, 0, 1, -1.61649, 1.78117, -5.24271)
+
+[node name="PickUp_Beans" parent="." instance=ExtResource("14_ir0xc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01906, 1.20525, -2.90428)
+
+[connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
+[connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
+[connection signal="visibility_changed" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_visibility_changed"]

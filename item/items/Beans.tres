@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=3 format=3 uid="uid://ccolf4m1fx4bg"]
+
+[ext_resource type="Script" path="res://item/items/item_data_consumable.gd" id="1_r2o0m"]
+[ext_resource type="Texture2D" uid="uid://b4wm1e4nobrw" path="res://assets/beansIcon.png" id="2_idrmd"]
+
+[resource]
+script = ExtResource("1_r2o0m")
+hunger_value = 5
+name = "Can of Beans"
+description = "Somehow still edible
+Slightly Nourishing"
+stackable = false
+texture = ExtResource("2_idrmd")

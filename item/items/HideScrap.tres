@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cpxt8h4i18qvu"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_eb785"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2oq74"]
+load_path = "res://.godot/imported/HideScrap32.png-6088f00a63efecec213426584903d392.ctex"
+
+[resource]
+script = ExtResource("1_eb785")
+name = "Hide Scrap"
+description = "Torn, but useable"
+stackable = true
+texture = SubResource("CompressedTexture2D_2oq74")

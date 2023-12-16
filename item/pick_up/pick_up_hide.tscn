@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbyuy26pt30iq"]
+
+[ext_resource type="Script" path="res://item/pick_up/pick_up.gd" id="1_6qyb5"]
+[ext_resource type="Resource" uid="uid://cpxt8h4i18qvu" path="res://item/items/HideScrap.tres" id="2_4x3gi"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_ulcu6"]
+
+[sub_resource type="Resource" id="Resource_8dt04"]
+script = ExtResource("3_ulcu6")
+item_data = ExtResource("2_4x3gi")
+quantity = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0bv8"]
+albedo_color = Color(0.254902, 0.2, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qd3xp"]
+material = SubResource("StandardMaterial3D_i0bv8")
+size = Vector3(0.5, 0.1, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4pfht"]
+points = PackedVector3Array(-0.25, -0.05, -0.25, -0.25, 0.05, -0.25, 0.25, -0.05, -0.25, -0.25, -0.05, 0.25, -0.25, 0.05, 0.25, 0.25, 0.05, -0.25, 0.25, -0.05, 0.25, 0.25, 0.05, 0.25)
+
+[node name="PickUp_Hide" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_6qyb5")
+slot_data = SubResource("Resource_8dt04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_qd3xp")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_4pfht")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://dk2y2vsy1ifm3"]
+
+[ext_resource type="Script" path="res://item/pick_up/pick_up.gd" id="1_a05g5"]
+[ext_resource type="Resource" uid="uid://ccolf4m1fx4bg" path="res://item/items/Beans.tres" id="2_kvi4w"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_kfhpa"]
+
+[sub_resource type="Resource" id="Resource_8dt04"]
+script = ExtResource("3_kfhpa")
+item_data = ExtResource("2_kvi4w")
+quantity = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nl5e8"]
+albedo_color = Color(0.333333, 0.333333, 0.333333, 1)
+metallic = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kgehw"]
+material = SubResource("StandardMaterial3D_nl5e8")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.3
+radial_segments = 10
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iyun7"]
+points = PackedVector3Array(7.45058e-09, 0.15, 0.1, 0.0587614, 0.15, 0.0808927, -0.0587801, 0.15, 0.0808927, 7.45058e-09, -0.15, 0.1, 0.0951057, 0.15, 0.0308927, 0.0587614, -0.15, 0.0808927, -0.0951056, 0.15, 0.0308927, -0.0587801, -0.15, 0.0808927, 0.0951057, 0.15, -0.0309123, 0.0951057, -0.15, 0.0308927, -0.0951056, 0.15, -0.0309123, -0.0951056, -0.15, 0.0308927, 0.0587614, 0.15, -0.0809123, 0.0951057, -0.15, -0.0309123, -0.0587801, 0.15, -0.0809123, -0.0951056, -0.15, -0.0309123, 7.45058e-09, 0.15, -0.1, 0.0587614, -0.15, -0.0809123, -0.0587801, -0.15, -0.0809123, 7.45058e-09, -0.15, -0.1)
+
+[node name="PickUp_Beans" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_a05g5")
+slot_data = SubResource("Resource_8dt04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_kgehw")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_iyun7")
