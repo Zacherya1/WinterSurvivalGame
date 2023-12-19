@@ -1,12 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbyuy26pt30iq"]
+[gd_scene load_steps=10 format=3 uid="uid://bbyuy26pt30iq"]
 
 [ext_resource type="Script" path="res://item/pick_up/pick_up.gd" id="1_6qyb5"]
-[ext_resource type="Resource" uid="uid://cpxt8h4i18qvu" path="res://item/items/HideScrap.tres" id="2_4x3gi"]
+[ext_resource type="Script" path="res://item/item_data.gd" id="2_st8k7"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_ulcu6"]
 
-[sub_resource type="Resource" id="Resource_8dt04"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fn7ai"]
+load_path = "res://.godot/imported/HideScrap32.png-6088f00a63efecec213426584903d392.ctex"
+
+[sub_resource type="Resource" id="Resource_55kia"]
+script = ExtResource("2_st8k7")
+name = "[Scrap Hide]"
+description = "blah blah"
+stackable = false
+texture = SubResource("CompressedTexture2D_fn7ai")
+
+[sub_resource type="Resource" id="Resource_0wrqo"]
 script = ExtResource("3_ulcu6")
-item_data = ExtResource("2_4x3gi")
+item_data = SubResource("Resource_55kia")
 quantity = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0bv8"]
@@ -25,7 +35,7 @@ collision_mask = 5
 script = ExtResource("1_6qyb5")
 sound_effect = 2
 display_text = "Hide Scrap"
-slot_data = SubResource("Resource_8dt04")
+slot_data = SubResource("Resource_0wrqo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_qd3xp")

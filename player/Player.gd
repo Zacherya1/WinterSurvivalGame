@@ -2,14 +2,14 @@ extends CharacterBody3D
 
 @export var inventory_data: InventoryData
 
-var speed
+var speed = 3.0
+var sprint_speed = 4.0
 const WALK_SPEED = 3.0
-const SPRINT_SPEED = 5.0
 const JUMP_VELOCITY = 2.5
 const SENSITIVITY = 0.003
 
 #plaer stat variables
-var hunger: int = 100
+var hunger: float = 100
 
 #bob variables
 const BOB_FREQ = 2.4
@@ -55,6 +55,12 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	
+	
+	#hunger reduces speed lower it is
+	if hunger >= 0:
+		hunger -= 0.01
+	hungry()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -65,9 +71,9 @@ func _physics_process(delta):
 	
 	#Handle Sprint
 	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
-	else:
-		speed = WALK_SPEED
+		speed = sprint_speed
+	#else:
+	#	speed = WALK_SPEED
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -90,7 +96,7 @@ func _physics_process(delta):
 	flashlight.transform.origin = _headbobFlash(t_bob)
 	
 	#FOV
-	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
+	var velocity_clamped = clamp(velocity.length(), 0.5, sprint_speed * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
@@ -105,6 +111,8 @@ func _physics_process(delta):
 			looking_at_item_text.text = interact_ray.get_collider().display_type + "\n\n" + interact_ray.get_collider().display_text
 	else:
 		looking_at_item.visible = false
+	
+	
 	
 	move_and_slide()
 
@@ -136,6 +144,24 @@ func interact() -> void:
 	if interact_ray.is_colliding():
 		interact_ray.get_collider().player_interact(self)
 
+func hungry() -> void:
+	if hunger <= 0:
+		speed = 0
+		sprint_speed = 1.0
+	elif hunger <= 25:
+		speed = 1.5
+		sprint_speed = 2.5
+	elif hunger <= 50:
+		speed = 2.0
+		sprint_speed = 3.5
+	elif hunger <= 75:
+		speed = 2.5
+		sprint_speed = 4.0
+	elif hunger > 75:
+		speed = 3.0
+		sprint_speed = 4.5
+	
+
 func get_drop_position() -> Vector3:
 	var direction = -camera.global_transform.basis.z
 	return camera.global_position + direction
@@ -143,9 +169,7 @@ func get_drop_position() -> Vector3:
 func eat(hunger_value: int) -> void:
 	AudioManager.MenuClickLow()
 	AudioManager.Eat()
-	if hunger < 100:
-		if (hunger_value + hunger) > 100:
-			while (hunger_value + hunger) > 100:
-				hunger -= 1
-		else:
-			hunger += hunger_value
+	if (hunger + hunger_value >= 100):
+		hunger = 100
+	else:
+		hunger = hunger + hunger_value

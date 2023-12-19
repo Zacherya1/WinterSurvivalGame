@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcb4yejph6lfj"]
+[gd_scene load_steps=9 format=3 uid="uid://bcb4yejph6lfj"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_88s60"]
 [ext_resource type="Script" path="res://scenes/Footstep_manager.gd" id="2_fabgi"]
 [ext_resource type="AudioStream" uid="uid://dvvar7m8ct4y2" path="res://assets/SnowFootstep3.mp3" id="3_f3aim"]
 [ext_resource type="AudioStream" uid="uid://dcq573yomtnr0" path="res://assets/SnowFootstep1.mp3" id="4_3gdqc"]
 [ext_resource type="AudioStream" uid="uid://bln8aesybicik" path="res://assets/SnowFootstep2.mp3" id="5_dempi"]
+[ext_resource type="PackedScene" uid="uid://cfru0xmt63hpu" path="res://scenes/hunger_bar.tscn" id="6_5n8rt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0dlg1"]
 
@@ -73,3 +74,15 @@ grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 mouse_filter = 2
 color = Color(1, 1, 1, 0.45098)
+
+[node name="HungerBar" parent="." instance=ExtResource("6_5n8rt")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -121.0
+offset_top = 128.0
+offset_right = -121.0
+offset_bottom = 128.0
+grow_horizontal = 0
+grow_vertical = 1
+scale = Vector2(1.52, 1.52)

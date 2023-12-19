@@ -16,5 +16,7 @@ func player_interact(body: Node3D) -> void:
 			2: 
 				#Cloth
 				AudioManager.SoftPickUp()
+		#test bit
+		slot_data = null
 		queue_free()
 	

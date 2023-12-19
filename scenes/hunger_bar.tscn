@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfru0xmt63hpu"]
+
+[ext_resource type="Script" path="res://scripts/hunger_bar.gd" id="1_ioinh"]
+[ext_resource type="Texture2D" uid="uid://b43qhndnsrkkm" path="res://assets/blurcircle.png" id="2_rsapr"]
+[ext_resource type="Texture2D" uid="uid://dvk35qxfejncr" path="res://assets/progress-bar-circle128.png" id="3_ffv82"]
+[ext_resource type="Texture2D" uid="uid://dqm24pbsihuns" path="res://assets/progress-bar-frame.png" id="4_rax5n"]
+[ext_resource type="FontFile" uid="uid://lypq04cnl56u" path="res://assets/RomanAntique.ttf" id="5_n6txr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ni5ex"]
+texture = ExtResource("2_rsapr")
+expand_margin_left = 200.0
+expand_margin_top = 200.0
+expand_margin_right = 200.0
+expand_margin_bottom = 200.0
+region_rect = Rect2(0, 0, 200, 200)
+modulate_color = Color(0, 0, 0, 0.443137)
+
+[node name="HungerBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ioinh")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 0
+offset_left = -51.0
+offset_top = -49.0
+offset_right = 205.0
+offset_bottom = 207.0
+scale = Vector2(0.400001, 0.400001)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ni5ex")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel"]
+modulate = Color(1, 1, 1, 0.45098)
+texture_filter = 3
+layout_mode = 0
+offset_left = -32.5
+offset_top = -37.4999
+offset_right = 95.5
+offset_bottom = 90.5001
+scale = Vector2(2.5, 2.5)
+fill_mode = 5
+texture_under = ExtResource("3_ffv82")
+texture_over = ExtResource("4_rax5n")
+texture_progress = ExtResource("3_ffv82")
+tint_under = Color(0, 0, 0, 0.376471)
+tint_over = Color(0, 0, 0, 0.639216)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 52.4999
+offset_top = 94.9999
+offset_right = 214.5
+offset_bottom = 165.0
+theme_override_colors/default_color = Color(1, 1, 1, 0.701961)
+theme_override_fonts/normal_font = ExtResource("5_n6txr")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]100%[/center]"

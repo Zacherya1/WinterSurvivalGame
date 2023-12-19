@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dttxk50l3h2d8"]
+[gd_scene load_steps=40 format=3 uid="uid://dttxk50l3h2d8"]
 
 [ext_resource type="Texture2D" uid="uid://cwdxsad24uybe" path="res://assets/snowtexture.png" id="1_7tsvx"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_40num"]
@@ -14,9 +14,10 @@
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="10_gnfx3"]
 [ext_resource type="Resource" uid="uid://ccolf4m1fx4bg" path="res://item/items/Beans.tres" id="11_4eb8d"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="12_ng3kk"]
-[ext_resource type="Resource" uid="uid://cpxt8h4i18qvu" path="res://item/items/HideScrap.tres" id="13_p5f08"]
 [ext_resource type="PackedScene" uid="uid://dk2y2vsy1ifm3" path="res://item/pick_up/pick_up_beans.tscn" id="14_ir0xc"]
+[ext_resource type="Script" path="res://item/item_data.gd" id="15_sw46l"]
 [ext_resource type="PackedScene" uid="uid://bbyuy26pt30iq" path="res://item/pick_up/pick_up_hide.tscn" id="15_w78xu"]
+[ext_resource type="Resource" uid="uid://c2byfcl8qmllm" path="res://item/items/ScrapHide.tres" id="17_8xu6p"]
 
 [sub_resource type="Shader" id="Shader_8jql4"]
 code = "
@@ -177,14 +178,55 @@ script = ExtResource("12_ng3kk")
 item_data = ExtResource("11_4eb8d")
 quantity = 1
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sb84a"]
+load_path = "res://.godot/imported/HideScrap32.png-6088f00a63efecec213426584903d392.ctex"
+
+[sub_resource type="Resource" id="Resource_jbxkf"]
+script = ExtResource("15_sw46l")
+name = "[Hide Scrap]"
+description = "
+Rough, but useable."
+stackable = false
+texture = SubResource("CompressedTexture2D_sb84a")
+
+[sub_resource type="Resource" id="Resource_i4d0b"]
+script = ExtResource("12_ng3kk")
+item_data = SubResource("Resource_jbxkf")
+quantity = 8
+
 [sub_resource type="Resource" id="Resource_gtp6f"]
 script = ExtResource("12_ng3kk")
-item_data = ExtResource("13_p5f08")
+item_data = SubResource("Resource_jbxkf")
 quantity = 1
 
 [sub_resource type="Resource" id="Resource_lm827"]
 script = ExtResource("10_gnfx3")
-slot_datas = Array[ExtResource("12_ng3kk")]([SubResource("Resource_pf16x"), null, SubResource("Resource_es3jy"), null, SubResource("Resource_gtp6f")])
+slot_datas = Array[ExtResource("12_ng3kk")]([SubResource("Resource_pf16x"), null, SubResource("Resource_es3jy"), SubResource("Resource_i4d0b"), SubResource("Resource_gtp6f")])
+
+[sub_resource type="Resource" id="Resource_eutfx"]
+script = ExtResource("12_ng3kk")
+item_data = ExtResource("17_8xu6p")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_ma0st"]
+script = ExtResource("12_ng3kk")
+item_data = ExtResource("17_8xu6p")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_7c8d1"]
+script = ExtResource("12_ng3kk")
+item_data = ExtResource("17_8xu6p")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_cc431"]
+script = ExtResource("12_ng3kk")
+item_data = ExtResource("17_8xu6p")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_yr4aj"]
+script = ExtResource("12_ng3kk")
+item_data = ExtResource("11_4eb8d")
+quantity = 1
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_40num")
@@ -317,9 +359,23 @@ inventory_data = SubResource("Resource_lm827")
 
 [node name="PickUp_Hide" parent="." instance=ExtResource("15_w78xu")]
 transform = Transform3D(0.597065, -0.802193, 0, 0.802193, 0.597065, 0, 0, 0, 1, -1.61649, 1.78117, -5.24271)
+slot_data = SubResource("Resource_eutfx")
+
+[node name="PickUp_Hide2" parent="." instance=ExtResource("15_w78xu")]
+transform = Transform3D(0.597065, -0.802193, 0, 0.802193, 0.597065, 0, 0, 0, 1, -4.74243, 1.78117, -2.99339)
+slot_data = SubResource("Resource_ma0st")
+
+[node name="PickUp_Hide3" parent="." instance=ExtResource("15_w78xu")]
+transform = Transform3D(0.597065, -0.802193, 0, 0.802193, 0.597065, 0, 0, 0, 1, 0.485549, 1.78117, -5.24271)
+slot_data = SubResource("Resource_7c8d1")
+
+[node name="PickUp_Hide4" parent="." instance=ExtResource("15_w78xu")]
+transform = Transform3D(0.597065, -0.802193, 0, 0.802193, 0.597065, 0, 0, 0, 1, -2.95338, 1.78117, -8.42751)
+slot_data = SubResource("Resource_cc431")
 
 [node name="PickUp_Beans" parent="." instance=ExtResource("14_ir0xc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01906, 1.20525, -2.90428)
+slot_data = SubResource("Resource_yr4aj")
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

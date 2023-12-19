@@ -1,27 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk2y2vsy1ifm3"]
+[gd_scene load_steps=10 format=3 uid="uid://dk2y2vsy1ifm3"]
 
 [ext_resource type="Script" path="res://item/pick_up/pick_up.gd" id="1_a05g5"]
-[ext_resource type="Resource" uid="uid://ccolf4m1fx4bg" path="res://item/items/Beans.tres" id="2_kvi4w"]
+[ext_resource type="Script" path="res://item/items/item_data_consumable.gd" id="2_hww33"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_kfhpa"]
 
-[sub_resource type="Resource" id="Resource_8dt04"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_en8ln"]
+load_path = "res://.godot/imported/beansIcon.png-bba47a5e847f805a0d2264d58f9d9eef.ctex"
+
+[sub_resource type="Resource" id="Resource_13jjo"]
+script = ExtResource("2_hww33")
+hunger_value = 50.0
+name = "[Can of Beans]"
+description = "
+Somehow still edible.
+Slightly Nourishing
+Right-Click to Eat"
+stackable = false
+texture = SubResource("CompressedTexture2D_en8ln")
+
+[sub_resource type="Resource" id="Resource_8ehl0"]
 script = ExtResource("3_kfhpa")
-item_data = ExtResource("2_kvi4w")
+item_data = SubResource("Resource_13jjo")
 quantity = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nl5e8"]
-albedo_color = Color(0.333333, 0.333333, 0.333333, 1)
-metallic = 0.1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i3tv"]
+albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
+metallic = 0.69
+metallic_specular = 0.8
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_kgehw"]
-material = SubResource("StandardMaterial3D_nl5e8")
-top_radius = 0.1
-bottom_radius = 0.1
-height = 0.3
-radial_segments = 10
+[sub_resource type="CylinderMesh" id="CylinderMesh_hq04l"]
+material = SubResource("StandardMaterial3D_0i3tv")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.4
+radial_segments = 12
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iyun7"]
-points = PackedVector3Array(7.45058e-09, 0.15, 0.1, 0.0587614, 0.15, 0.0808927, -0.0587801, 0.15, 0.0808927, 7.45058e-09, -0.15, 0.1, 0.0951057, 0.15, 0.0308927, 0.0587614, -0.15, 0.0808927, -0.0951056, 0.15, 0.0308927, -0.0587801, -0.15, 0.0808927, 0.0951057, 0.15, -0.0309123, 0.0951057, -0.15, 0.0308927, -0.0951056, 0.15, -0.0309123, -0.0951056, -0.15, 0.0308927, 0.0587614, 0.15, -0.0809123, 0.0951057, -0.15, -0.0309123, -0.0587801, 0.15, -0.0809123, -0.0951056, -0.15, -0.0309123, 7.45058e-09, 0.15, -0.1, 0.0587614, -0.15, -0.0809123, -0.0587801, -0.15, -0.0809123, 7.45058e-09, -0.15, -0.1)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_63y2n"]
+points = PackedVector3Array(-0.15, -0.2, 0, -0.129914, -0.2, -0.075, -0.129914, -0.2, 0.0749706, -0.15, 0.2, 0, -0.075, -0.2, -0.129914, -0.129914, 0.2, -0.075, -0.075, -0.2, 0.129884, -0.129914, 0.2, 0.0749706, 0, -0.2, -0.15, -0.075, 0.2, -0.129914, 0, -0.2, 0.15, -0.075, 0.2, 0.129884, 0.075, -0.2, -0.129914, 0, 0.2, -0.15, 0.075, -0.2, 0.129884, 0, 0.2, 0.15, 0.129884, -0.2, -0.0750294, 0.075, 0.2, -0.129914, 0.129884, -0.2, 0.0749706, 0.075, 0.2, 0.129884, 0.15, -0.2, 0, 0.129884, 0.2, -0.0750294, 0.129884, 0.2, 0.0749706, 0.15, 0.2, 0)
 
 [node name="PickUp_Beans" type="RigidBody3D"]
 collision_layer = 4
@@ -29,11 +44,10 @@ collision_mask = 5
 script = ExtResource("1_a05g5")
 sound_effect = 1
 display_text = "Can of Beans"
-slot_data = SubResource("Resource_8dt04")
+slot_data = SubResource("Resource_8ehl0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_kgehw")
-skeleton = NodePath("")
+mesh = SubResource("CylinderMesh_hq04l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_iyun7")
+shape = SubResource("ConvexPolygonShape3D_63y2n")

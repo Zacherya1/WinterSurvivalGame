@@ -43,13 +43,11 @@ func on_inventory_interact(inventory_data: InventoryData,
 	
 	match [grabbed_slot_data, button]:
 		[null, MOUSE_BUTTON_LEFT]:
-			#AudioManager.MenuClickHigh()
 			grabbed_slot_data = inventory_data.grab_slot_data(index)
 		[_, MOUSE_BUTTON_LEFT]:
 			AudioManager.MenuClickHigh()
 			grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
 		[null, MOUSE_BUTTON_RIGHT]:
-			#AudioManager.MenuClickLow()
 			inventory_data.use_slot_data(index)
 		[_, MOUSE_BUTTON_RIGHT]:
 			AudioManager.MenuClickLow()
@@ -64,20 +62,24 @@ func update_grabbed_slot() -> void:
 	else:
 		grabbed_slot.hide()
 
-
+#This function is for dropping items, tons of useless code becuase too many bugs - maybe will clean eventually
+#For the time being, you just can't drop items after picking them up
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 			and event.is_pressed() \
 			and grabbed_slot_data:
 		
-		match event.button_index:
-			MOUSE_BUTTON_LEFT:
-				drop_slot_data.emit(grabbed_slot_data)
-				grabbed_slot_data = null
-			MOUSE_BUTTON_RIGHT:
-				drop_slot_data.emit(grabbed_slot_data.create_single_slot_data())
-				if grabbed_slot_data.quantity < 1:
-					grabbed_slot_data = null
+		#match event.button_index:
+		#	MOUSE_BUTTON_LEFT:
+		#		drop_slot_data.emit(grabbed_slot_data.create_single_slot_data())
+		#		if grabbed_slot_data.quantity < 1:
+		#			grabbed_slot_data = null
+		#		drop_slot_data.emit(grabbed_slot_data)
+		#		grabbed_slot_data = null
+		#	MOUSE_BUTTON_RIGHT:
+		#		drop_slot_data.emit(grabbed_slot_data.create_single_slot_data())
+		#		if grabbed_slot_data.quantity < 1:
+		#			grabbed_slot_data = null
 		update_grabbed_slot()
 
 
