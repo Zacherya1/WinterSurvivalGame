@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemDataFeetEquip" load_steps=3 format=3 uid="uid://b63qix0tq72cf"]
+
+[ext_resource type="Script" path="res://item/item_data_feet_equip.gd" id="1_e7yed"]
+[ext_resource type="Texture2D" uid="uid://b2jn7y1n6e1vw" path="res://assets/textures/hide_boots.png" id="2_wlqfj"]
+
+[resource]
+script = ExtResource("1_e7yed")
+defense = 1
+warmth = 10
+radresist = 1
+bonus_speed = 1.0
+bonus_stamina = 100
+name = "[Rawhide Boots]"
+description = "
+Crudely sewn together scraps of hide.
+Provides warmth and improved movement."
+stackable = false
+texture = ExtResource("2_wlqfj")

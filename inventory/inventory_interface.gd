@@ -9,6 +9,9 @@ var external_inventory_owner
 @onready var player_inventory = $PlayerInventory
 @onready var grabbed_slot = $GrabbedSlot
 @onready var external_inventory = $ExternalInventory
+@onready var chest_equip_inventory = $ChestEquipInventory
+@onready var head_equip_inventory = $HeadEquipInventory
+@onready var feet_equip_inventory = $FeetEquipInventory
 
 
 func _physics_process(delta: float) -> void:
@@ -18,6 +21,18 @@ func _physics_process(delta: float) -> void:
 func set_player_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	player_inventory.set_inventory_data(inventory_data)
+
+func set_chest_equip_inventory_data(inventory_data: InventoryData) -> void:
+	inventory_data.inventory_interact.connect(on_inventory_interact)
+	chest_equip_inventory.set_inventory_data(inventory_data)
+
+func set_head_equip_inventory_data(inventory_data: InventoryData) -> void:
+	inventory_data.inventory_interact.connect(on_inventory_interact)
+	head_equip_inventory.set_inventory_data(inventory_data)
+
+func set_feet_equip_inventory_data(inventory_data: InventoryData) -> void:
+	inventory_data.inventory_interact.connect(on_inventory_interact)
+	feet_equip_inventory.set_inventory_data(inventory_data)
 
 func set_external_inventory(_external_inventory_owner) -> void:
 	external_inventory_owner = _external_inventory_owner

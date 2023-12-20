@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://cfru0xmt63hpu"]
 
 [ext_resource type="Script" path="res://scripts/hunger_bar.gd" id="1_ioinh"]
-[ext_resource type="Texture2D" uid="uid://b43qhndnsrkkm" path="res://assets/blurcircle.png" id="2_rsapr"]
-[ext_resource type="Texture2D" uid="uid://dvk35qxfejncr" path="res://assets/progress-bar-circle128.png" id="3_ffv82"]
-[ext_resource type="Texture2D" uid="uid://dqm24pbsihuns" path="res://assets/progress-bar-frame.png" id="4_rax5n"]
+[ext_resource type="Texture2D" uid="uid://b43qhndnsrkkm" path="res://assets/textures/blurcircle.png" id="2_sqlai"]
+[ext_resource type="Texture2D" uid="uid://dvk35qxfejncr" path="res://assets/ui/progress-bar-circle128.png" id="3_ffv82"]
+[ext_resource type="Texture2D" uid="uid://dqm24pbsihuns" path="res://assets/ui/progress-bar-frame.png" id="4_rax5n"]
 [ext_resource type="FontFile" uid="uid://lypq04cnl56u" path="res://assets/RomanAntique.ttf" id="5_n6txr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ni5ex"]
-texture = ExtResource("2_rsapr")
+texture = ExtResource("2_sqlai")
 expand_margin_left = 200.0
 expand_margin_top = 200.0
 expand_margin_right = 200.0

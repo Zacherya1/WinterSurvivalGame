@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dclbwh0ty41n1"]
 
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_xxdv6"]
-[ext_resource type="AudioStream" uid="uid://b238b30cn57yj" path="res://assets/WindAmbienceShortFixed.mp3" id="2_d1r31"]
-[ext_resource type="AudioStream" uid="uid://dvobs8n453sl" path="res://assets/SoftPickUp.wav" id="3_wn07a"]
-[ext_resource type="AudioStream" uid="uid://cxffx4farohv7" path="res://assets/MetalPickUp.mp3" id="4_vjf2u"]
-[ext_resource type="AudioStream" uid="uid://bok13fi3uefw5" path="res://assets/MenuClick.wav" id="5_83kjx"]
-[ext_resource type="AudioStream" uid="uid://c1fvpq5xllbai" path="res://assets/Eat.wav" id="6_48cdp"]
+[ext_resource type="AudioStream" uid="uid://b238b30cn57yj" path="res://assets/sfx/WindAmbienceShortFixed.mp3" id="2_d1r31"]
+[ext_resource type="AudioStream" uid="uid://dvobs8n453sl" path="res://assets/sfx/SoftPickUp.wav" id="3_wn07a"]
+[ext_resource type="AudioStream" uid="uid://cxffx4farohv7" path="res://assets/sfx/MetalPickUp.mp3" id="4_vjf2u"]
+[ext_resource type="AudioStream" uid="uid://bok13fi3uefw5" path="res://assets/sfx/MenuClick.wav" id="5_83kjx"]
+[ext_resource type="AudioStream" uid="uid://c1fvpq5xllbai" path="res://assets/sfx/Eat.wav" id="6_48cdp"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_xxdv6")

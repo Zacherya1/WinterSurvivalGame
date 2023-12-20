@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDataHeadEquip" load_steps=3 format=3 uid="uid://c6jv4shx7sise"]
+
+[ext_resource type="Script" path="res://item/item_data_head_equip.gd" id="1_6hsx8"]
+[ext_resource type="Texture2D" uid="uid://dfhwfua8kt5c7" path="res://assets/textures/basic_gasmask.png" id="2_0vno5"]
+
+[resource]
+script = ExtResource("1_6hsx8")
+defense = 1
+warmth = 1
+radresist = 10
+name = "[Gas Mask]"
+description = "
+Consumer grade gas mask. 
+Provides excellent radiation protection."
+stackable = false
+texture = ExtResource("2_0vno5")

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_88s60"]
 [ext_resource type="Script" path="res://scenes/Footstep_manager.gd" id="2_fabgi"]
-[ext_resource type="AudioStream" uid="uid://dvvar7m8ct4y2" path="res://assets/SnowFootstep3.mp3" id="3_f3aim"]
-[ext_resource type="AudioStream" uid="uid://dcq573yomtnr0" path="res://assets/SnowFootstep1.mp3" id="4_3gdqc"]
-[ext_resource type="AudioStream" uid="uid://bln8aesybicik" path="res://assets/SnowFootstep2.mp3" id="5_dempi"]
+[ext_resource type="AudioStream" uid="uid://dvvar7m8ct4y2" path="res://assets/sfx/SnowFootstep3.mp3" id="3_f3aim"]
+[ext_resource type="AudioStream" uid="uid://dcq573yomtnr0" path="res://assets/sfx/SnowFootstep1.mp3" id="4_3gdqc"]
+[ext_resource type="AudioStream" uid="uid://bln8aesybicik" path="res://assets/sfx/SnowFootstep2.mp3" id="5_dempi"]
 [ext_resource type="PackedScene" uid="uid://cfru0xmt63hpu" path="res://scenes/hunger_bar.tscn" id="6_5n8rt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0dlg1"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemDataChestEquip" load_steps=3 format=3 uid="uid://csnvacy680mwc"]
+
+[ext_resource type="Script" path="res://item/item_data_chest_equip.gd" id="1_fgxfd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f8qes"]
+load_path = "res://.godot/imported/hide_parka.png-a95d100023567f42667f48cd92a63db4.ctex"
+
+[resource]
+script = ExtResource("1_fgxfd")
+defense = 1
+warmth = 10
+radresist = 0
+name = "[Rawhide Parka]"
+description = "
+Homemade, thickly padded parka.
+What it lacks in defense, it makes up in
+warmth and comfort.
+"
+stackable = false
+texture = SubResource("CompressedTexture2D_f8qes")

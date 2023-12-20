@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvunxs4oytqx5"]
+[gd_scene load_steps=8 format=3 uid="uid://dvunxs4oytqx5"]
 
 [ext_resource type="Script" path="res://inventory/slot.gd" id="1_7ksk2"]
-[ext_resource type="Texture2D" uid="uid://dvymjgbga160s" path="res://assets/blur.png" id="2_awaal"]
+[ext_resource type="Texture2D" uid="uid://dvymjgbga160s" path="res://assets/textures/blur.png" id="2_56dd3"]
 [ext_resource type="FontFile" uid="uid://lypq04cnl56u" path="res://assets/RomanAntique.ttf" id="2_ipm2d"]
+[ext_resource type="Texture2D" uid="uid://d2y2m3oq534s0" path="res://assets/textures/blur2.png" id="3_nm2ku"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rlwvx"]
-texture = ExtResource("2_awaal")
+texture = ExtResource("2_56dd3")
 region_rect = Rect2(124.97, 103.674, 350.053, 374.011)
 modulate_color = Color(1, 1, 1, 0.741176)
 
@@ -15,19 +16,24 @@ default_font_size = 25
 TooltipLabel/fonts/font = ExtResource("2_ipm2d")
 TooltipPanel/styles/panel = SubResource("StyleBoxTexture_rlwvx")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4gtlv"]
+texture = ExtResource("3_nm2ku")
+modulate_color = Color(1, 1, 1, 0.772549)
+
 [node name="Slot" type="PanelContainer"]
 custom_minimum_size = Vector2(96, 96)
 offset_right = 40.0
 offset_bottom = 40.0
 theme = SubResource("Theme_gwrfj")
+theme_override_styles/panel = SubResource("StyleBoxTexture_4gtlv")
 script = ExtResource("1_7ksk2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2

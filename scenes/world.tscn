@@ -1,16 +1,19 @@
-[gd_scene load_steps=40 format=3 uid="uid://dttxk50l3h2d8"]
+[gd_scene load_steps=46 format=3 uid="uid://dttxk50l3h2d8"]
 
-[ext_resource type="Texture2D" uid="uid://cwdxsad24uybe" path="res://assets/snowtexture.png" id="1_7tsvx"]
+[ext_resource type="Texture2D" uid="uid://cwdxsad24uybe" path="res://assets/textures/snowtexture.png" id="1_7tsvx"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_40num"]
 [ext_resource type="PackedScene" uid="uid://bcb4yejph6lfj" path="res://player/player.tscn" id="2_yjn56"]
 [ext_resource type="Texture2D" uid="uid://bjvcigvq204bw" path="res://addons/kenney_particle_pack/circle_05.png" id="3_cw5re"]
 [ext_resource type="Resource" uid="uid://c5d6mx7btsjr1" path="res://test_inv.tres" id="3_owqpx"]
 [ext_resource type="PackedScene" uid="uid://b7ler82uhkvkw" path="res://inventory/inventory.tscn" id="4_4m46i"]
+[ext_resource type="Script" path="res://inventory/inventory_data_chest_equip.gd" id="5_wiwng"]
+[ext_resource type="Script" path="res://inventory/inventory_data_head_equip.gd" id="6_kg8kp"]
 [ext_resource type="Script" path="res://inventory/inventory_interface.gd" id="6_tqy0d"]
+[ext_resource type="Script" path="res://inventory/inventory_data_feet_equip.gd" id="7_qhbk8"]
 [ext_resource type="PackedScene" uid="uid://dvunxs4oytqx5" path="res://inventory/slot.tscn" id="8_4g01v"]
 [ext_resource type="PackedScene" uid="uid://bcbcqdl2so53b" path="res://interactable/chest.tscn" id="9_sivul"]
 [ext_resource type="FontFile" uid="uid://lypq04cnl56u" path="res://assets/RomanAntique.ttf" id="9_uk1qn"]
-[ext_resource type="Texture2D" uid="uid://dvymjgbga160s" path="res://assets/blur.png" id="9_w7hk4"]
+[ext_resource type="Texture2D" uid="uid://dvymjgbga160s" path="res://assets/textures/blur.png" id="9_w7hk4"]
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="10_gnfx3"]
 [ext_resource type="Resource" uid="uid://ccolf4m1fx4bg" path="res://item/items/Beans.tres" id="11_4eb8d"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="12_ng3kk"]
@@ -134,6 +137,18 @@ albedo_color = Color(0.666667, 0.666667, 0.666667, 1)
 albedo_texture = ExtResource("1_7tsvx")
 uv1_triplanar = true
 
+[sub_resource type="Resource" id="Resource_hom71"]
+script = ExtResource("5_wiwng")
+slot_datas = Array[ExtResource("12_ng3kk")]([null])
+
+[sub_resource type="Resource" id="Resource_tlgtl"]
+script = ExtResource("6_kg8kp")
+slot_datas = Array[ExtResource("12_ng3kk")]([null])
+
+[sub_resource type="Resource" id="Resource_mq7a2"]
+script = ExtResource("7_qhbk8")
+slot_datas = Array[ExtResource("12_ng3kk")]([null])
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_un7tr"]
 emission_shape = 3
 emission_box_extents = Vector3(400, 1, 400)
@@ -166,7 +181,6 @@ material = SubResource("StandardMaterial3D_6lsxu")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0bk2"]
 texture = ExtResource("9_w7hk4")
 region_rect = Rect2(94.3569, 93.026, 404.624, 401.962)
-modulate_color = Color(1, 1, 1, 0.541176)
 
 [sub_resource type="Resource" id="Resource_pf16x"]
 script = ExtResource("12_ng3kk")
@@ -201,7 +215,7 @@ quantity = 1
 
 [sub_resource type="Resource" id="Resource_lm827"]
 script = ExtResource("10_gnfx3")
-slot_datas = Array[ExtResource("12_ng3kk")]([SubResource("Resource_pf16x"), null, SubResource("Resource_es3jy"), SubResource("Resource_i4d0b"), SubResource("Resource_gtp6f")])
+slot_datas = Array[ExtResource("12_ng3kk")]([SubResource("Resource_pf16x"), null, SubResource("Resource_es3jy"), SubResource("Resource_i4d0b"), SubResource("Resource_gtp6f"), null, null, null, null, null, null, null, null, null, null, null])
 
 [sub_resource type="Resource" id="Resource_eutfx"]
 script = ExtResource("12_ng3kk")
@@ -253,6 +267,9 @@ material = SubResource("StandardMaterial3D_oefqb")
 [node name="Player" parent="." instance=ExtResource("2_yjn56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0679278, 0)
 inventory_data = ExtResource("3_owqpx")
+chest_equip_inventory_data = SubResource("Resource_hom71")
+head_equip_inventory_data = SubResource("Resource_tlgtl")
+feet_equip_inventory_data = SubResource("Resource_mq7a2")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.0398, 2.3153, 0)
@@ -288,22 +305,46 @@ layout_mode = 0
 offset_right = 1934.0
 offset_bottom = 1097.0
 mouse_filter = 2
-color = Color(0, 0, 0, 0.541176)
+color = Color(0, 0, 0, 0.462745)
 
 [node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("4_4m46i")]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 50.0
-offset_bottom = 50.0
+offset_left = 220.0
+offset_top = 50.0
+offset_right = 260.0
+offset_bottom = 90.0
+
+[node name="HeadEquipInventory" parent="UI/InventoryInterface" instance=ExtResource("4_4m46i")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 90.0
+offset_bottom = 90.0
+scale = Vector2(1.25, 1.25)
+
+[node name="ChestEquipInventory" parent="UI/InventoryInterface" instance=ExtResource("4_4m46i")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 200.0
+offset_right = 90.0
+offset_bottom = 240.0
+scale = Vector2(1.25, 1.25)
+
+[node name="FeetEquipInventory" parent="UI/InventoryInterface" instance=ExtResource("4_4m46i")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 350.0
+offset_right = 90.0
+offset_bottom = 390.0
+scale = Vector2(1.25, 1.25)
 
 [node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("4_4m46i")]
 visible = false
 layout_mode = 0
-offset_left = 1232.0
-offset_top = 308.0
-offset_right = 1272.0
-offset_bottom = 348.0
+offset_left = 900.0
+offset_top = 50.0
+offset_right = 940.0
+offset_bottom = 90.0
 
 [node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("8_4g01v")]
 visible = false
@@ -315,16 +356,16 @@ offset_bottom = 96.0
 scale = Vector2(0.75, 0.75)
 
 [node name="Panel" type="Panel" parent="UI"]
-visible = false
+self_modulate = Color(0, 0, 0, 0.360784)
 anchors_preset = -1
 anchor_left = 0.524
 anchor_top = 0.644
 anchor_right = 0.524
 anchor_bottom = 0.644
-offset_left = -161.08
-offset_top = -0.520081
-offset_right = 161.92
-offset_bottom = 148.48
+offset_left = -206.08
+offset_top = -146.52
+offset_right = 116.92
+offset_bottom = 2.48004
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_j0bk2")
 
@@ -335,16 +376,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -138.5
-offset_top = -129.0
-offset_right = 135.5
-offset_bottom = 18.0
+offset_left = -140.5
+offset_top = -115.0
+offset_right = 133.5
+offset_bottom = 31.9999
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.592157)
 theme_override_fonts/font = ExtResource("9_uk1qn")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "[E] Take
 
 [Can of Beans]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvcxyarrn5qfi"
-path="res://.godot/imported/progress-bar-circle64x.png-fd64ae3a186e0088111d8b37f74261cb.ctex"
+uid="uid://dfhwfua8kt5c7"
+path="res://.godot/imported/basic_gasmask.png-24a43c115a116ed03620e9b3c07d8dcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/progress-bar-circle64x.png"
-dest_files=["res://.godot/imported/progress-bar-circle64x.png-fd64ae3a186e0088111d8b37f74261cb.ctex"]
+source_file="res://assets/textures/basic_gasmask.png"
+dest_files=["res://.godot/imported/basic_gasmask.png-24a43c115a116ed03620e9b3c07d8dcf.ctex"]
 
 [params]
 

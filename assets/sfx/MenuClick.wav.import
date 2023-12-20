@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dvobs8n453sl"
-path="res://.godot/imported/SoftPickUp.wav-2f300232749e00f1171478e2bb61e258.sample"
+uid="uid://bok13fi3uefw5"
+path="res://.godot/imported/MenuClick.wav-b2de01fad7f8d8aa3b74560cbaae8f9a.sample"
 
 [deps]
 
-source_file="res://assets/SoftPickUp.wav"
-dest_files=["res://.godot/imported/SoftPickUp.wav-2f300232749e00f1171478e2bb61e258.sample"]
+source_file="res://assets/sfx/MenuClick.wav"
+dest_files=["res://.godot/imported/MenuClick.wav-b2de01fad7f8d8aa3b74560cbaae8f9a.sample"]
 
 [params]
 

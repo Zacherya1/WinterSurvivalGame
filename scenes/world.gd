@@ -14,6 +14,9 @@ const HideScrap = preload("res://item/items/ScrapHide.tres")
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
 	inventory_interface.set_player_inventory_data(player.inventory_data)
+	inventory_interface.set_chest_equip_inventory_data(player.chest_equip_inventory_data)
+	inventory_interface.set_head_equip_inventory_data(player.head_equip_inventory_data)
+	inventory_interface.set_feet_equip_inventory_data(player.feet_equip_inventory_data)
 	
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)

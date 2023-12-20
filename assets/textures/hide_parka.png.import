@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drt387056yi8m"
-path="res://.godot/imported/progress-bar-circle.png-ba39a556c53b4804d09104ccd74f7e09.ctex"
+uid="uid://crjtwr2uk1upr"
+path="res://.godot/imported/hide_parka.png-5946a4f709fcfa22d09490a0faa97774.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/progress-bar-circle.png"
-dest_files=["res://.godot/imported/progress-bar-circle.png-ba39a556c53b4804d09104ccd74f7e09.ctex"]
+source_file="res://assets/textures/hide_parka.png"
+dest_files=["res://.godot/imported/hide_parka.png-5946a4f709fcfa22d09490a0faa97774.ctex"]
 
 [params]
 

@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqm24pbsihuns"
-path="res://.godot/imported/progress-bar-frame.png-bb6411e12fcead1674ad6f69f07d8c91.ctex"
+uid="uid://cwdxsad24uybe"
+path.s3tc="res://.godot/imported/snowtexture.png-7eaccd0b90b33a5b19a37c79c30022f0.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/progress-bar-frame.png"
-dest_files=["res://.godot/imported/progress-bar-frame.png-bb6411e12fcead1674ad6f69f07d8c91.ctex"]
+source_file="res://assets/textures/snowtexture.png"
+dest_files=["res://.godot/imported/snowtexture.png-7eaccd0b90b33a5b19a37c79c30022f0.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

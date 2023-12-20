@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://dk2y2vsy1ifm3"]
 
 [ext_resource type="Script" path="res://item/pick_up/pick_up.gd" id="1_a05g5"]
-[ext_resource type="Script" path="res://item/items/item_data_consumable.gd" id="2_hww33"]
+[ext_resource type="Script" path="res://item/item_data_consumable.gd" id="2_vyhvk"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_kfhpa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_en8ln"]
 load_path = "res://.godot/imported/beansIcon.png-bba47a5e847f805a0d2264d58f9d9eef.ctex"
 
 [sub_resource type="Resource" id="Resource_13jjo"]
-script = ExtResource("2_hww33")
+script = ExtResource("2_vyhvk")
 hunger_value = 50.0
 name = "[Can of Beans]"
 description = "

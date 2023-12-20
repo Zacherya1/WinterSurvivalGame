@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=3 format=3 uid="uid://ccolf4m1fx4bg"]
 
-[ext_resource type="Script" path="res://item/items/item_data_consumable.gd" id="1_r2o0m"]
+[ext_resource type="Script" path="res://item/item_data_consumable.gd" id="1_r2o0m"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_en8ln"]
 load_path = "res://.godot/imported/beansIcon.png-bba47a5e847f805a0d2264d58f9d9eef.ctex"
 
 [resource]
 script = ExtResource("1_r2o0m")
-hunger_value = 50.0
+hunger_value = 10.0
 name = "[Can of Beans]"
 description = "Right-Click to Eat
 

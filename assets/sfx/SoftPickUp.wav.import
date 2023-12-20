@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://c1fvpq5xllbai"
-path="res://.godot/imported/Eat.wav-16003909bc124fa322ecfd3145cd5250.sample"
+uid="uid://dvobs8n453sl"
+path="res://.godot/imported/SoftPickUp.wav-87bf7b52ac953fa6efa4101648f909bc.sample"
 
 [deps]
 
-source_file="res://assets/Eat.wav"
-dest_files=["res://.godot/imported/Eat.wav-16003909bc124fa322ecfd3145cd5250.sample"]
+source_file="res://assets/sfx/SoftPickUp.wav"
+dest_files=["res://.godot/imported/SoftPickUp.wav-87bf7b52ac953fa6efa4101648f909bc.sample"]
 
 [params]
 

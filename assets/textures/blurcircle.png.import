@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b43qhndnsrkkm"
-path="res://.godot/imported/blurcircle.png-eb4b77506e60a3198a83b7e5cbe9087f.ctex"
+path="res://.godot/imported/blurcircle.png-c13c700ba281d456ba0974cec81520e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/blurcircle.png"
-dest_files=["res://.godot/imported/blurcircle.png-eb4b77506e60a3198a83b7e5cbe9087f.ctex"]
+source_file="res://assets/textures/blurcircle.png"
+dest_files=["res://.godot/imported/blurcircle.png-c13c700ba281d456ba0974cec81520e4.ctex"]
 
 [params]
 
